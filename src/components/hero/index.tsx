@@ -22,7 +22,7 @@ const Hero = () => {
   } = useHero();
   return (
     <div className="container w-screen h-screen flex flex-col  items-center lg:items-start">
-      <div className="w-full ">
+      <div className="w-full z-50 ">
         <article className=" lg:w-[50%] h-screen flex justify-center items-center">
           <div className="">
             <h1 className="text-6xl font-semibold text-start flex  ">Hi, 👋</h1>
@@ -35,18 +35,28 @@ const Hero = () => {
           </div>
         </article>
       </div>
-      <div className="flex justify-center w-full ">
+
+      <div className="flex justify-center w-full -z-0 ">
         <div className="inline-flex mt-24 relative z-0">
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <HexagonSvg prop={{ className: "size-[900px] lg:size-[1100px]" }} />
-          </div>
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <HexagonSvg
-              prop={{ className: "size-[1100px] lg:size-[1800px]" }}
+              prop={{
+                className: "size-[900px] lg:size-[1100px]",
+                size: 1500,
+                duration: 30,
+              }}
             />
           </div>
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <Circle className="absolute left-[58px] lg:-top-[578px] ">
+            <HexagonSvg
+              prop={{
+                className: "size-[1100px] lg:size-[1800px]",
+                reverse: true,
+              }}
+            />
+          </div>
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <Circle animate className="absolute left-[138px] lg:-top-[758px] ">
               <motion.img
                 style={{ rotate: cube2Translate }}
                 src={cube2.src}
@@ -57,7 +67,7 @@ const Hero = () => {
             </Circle>
           </div>
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <Circle className="absolute  left-[162px] top-[283px]">
+            <Circle animate className="absolute  left-[62px] top-[180px]">
               <motion.img
                 src={triangle.src}
                 alt="hlo"
@@ -68,7 +78,7 @@ const Hero = () => {
             </Circle>
           </div>
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <Circle className="absolute -left-[600px] -top-[80px]  ">
+            <Circle className="absolute -left-[500px] -top-[80px]  ">
               <motion.img
                 style={{ rotate: circleTranslate }}
                 src={circle.src}
@@ -102,8 +112,20 @@ const Hero = () => {
         className="flex w-full flex-col items-center mt-32 
       md:mt-96 gap-4"
       >
-        <div className="h-10 w-5 outline outline-[6px] outline-neon_green/20 inline-flex justify-center pt-2 rounded-full">
-          <div className="h-3 w-1 bg-neon_green rounded-full "></div>
+        <div className="h-10 w-5 outline outline-[6px] outline-purple-900 inline-flex justify-center pt-2 rounded-full">
+          <motion.div
+            animate={{
+              translateY: 12,
+              opacity: 0.2,
+            }}
+            transition={{
+              duration: 2,
+              ease: "linear",
+              repeat: Infinity,
+              repeatType: "loop",
+            }}
+            className="h-3 w-1 bg-lime-500 rounded-full "
+          />
         </div>
         <p className=" tracking-wider uppercase text-zinc-500 font-extrabold">
           Scroll to learn more
