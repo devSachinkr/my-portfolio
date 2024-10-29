@@ -1,13 +1,15 @@
 "use client";
 
 import { useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import Typed from "typed.js";
 
 const useHero = () => {
   const cubeRef = useRef(null);
   const cube2Ref = useRef(null);
   const circleRef = useRef(null);
   const triangleRef = useRef(null);
+  const typedRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: cubeRef,
     offset: ["start end", "end start"],
@@ -38,7 +40,36 @@ const useHero = () => {
     [0, 1],
     [20, 100]
   );
-  return { cubeRef, cubeRotate, cube2Ref, cube2Translate, circleRef ,circleTranslate,triangleTranslate,triangleRef};
+
+  useEffect(() => {
+    const typed = new Typed(typedRef.current, {
+      strings: [
+        "<span>I am  <span className='text-[#a4f513]'>Sachin Kumar.</span></span>",
+        "<span>A Backend Developer. </span>",
+        "<span>A Frontend Developer. </span>",
+        "<span>A Fullstack Developer. </span>",
+      ],
+      typeSpeed: 100,
+      loop: true,
+      smartBackspace: true,
+      showCursor: false,
+    });
+
+    return () => {
+      typed.destroy();
+    };
+  }, []);
+  return {
+    cubeRef,
+    cubeRotate,
+    cube2Ref,
+    cube2Translate,
+    circleRef,
+    circleTranslate,
+    triangleTranslate,
+    triangleRef,
+    typedRef,
+  };
 };
 
 export { useHero };

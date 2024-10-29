@@ -1,8 +1,10 @@
-'use client'
+"use client";
 import Loader from "@/components/global/loader";
 import React from "react";
 import { motion } from "framer-motion";
 import Hero from "@/components/hero";
+import Navbar from "@/components/navbar";
+import Skills from "@/components/skills";
 const page = () => {
   return (
     <div className="h-screen w-screen">
@@ -13,7 +15,9 @@ const page = () => {
         transition={{ delay: 0.5 }}
       >
         <section>
-            <Hero/>
+          <Navbar />
+          <Hero />
+          <Skills />
         </section>
       </motion.div>
     </div>

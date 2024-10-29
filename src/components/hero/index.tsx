@@ -19,24 +19,29 @@ const Hero = () => {
     circleTranslate,
     triangleTranslate,
     triangleRef,
+    typedRef,
   } = useHero();
+
   return (
-    <div className="container w-screen h-screen flex flex-col  items-center lg:items-start">
-      <div className="w-full z-50 ">
-        <article className=" lg:w-[50%] h-screen flex justify-center items-center">
-          <div className="">
-            <h1 className="text-6xl font-semibold text-start flex  ">Hi, 👋</h1>
-            <h2 className="text-5xl font-semibold   ">
-              I am <span className="text-[#a4f513]">Sachin Kumar.</span>
-            </h2>
-            <p className="text-muted-foreground capitalize">
-              a passionate software developer.
-            </p>
+    <div className="container w-screen  flex flex-col  items-center lg:items-start select-none mb-10 overflow-y-clip overflow-x-hidden h-[101rem]  ">
+      <div className="w-full z-50 flex ">
+        <div className=" w-screen h-screen flex  items-center justify-center">
+          <div className=" w-screen flex flex-col align-middle pl-16 ">
+            <div>
+              <h1 className="text-[3rem] font-semibold ">Hi, 👋</h1>
+              <h2
+                className="text-[3rem] font-semibold  h-[5vh] "
+                ref={typedRef}
+              ></h2>
+              <p className="text-muted-foreground capitalize mt-6">
+                a passionate software developer.
+              </p>
+            </div>
           </div>
-        </article>
+        </div>
       </div>
 
-      <div className="flex justify-center w-full -z-0 ">
+      <div className="flex justify-center w-full -z-10 ">
         <div className="inline-flex mt-24 relative z-0">
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <HexagonSvg
@@ -98,7 +103,7 @@ const Hero = () => {
             <Image
               src={cube}
               alt="hero-banner"
-              width={300}
+              width={400}
               height={300}
               className="absolute w-[calc(100%+100px)] max-w-none -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 saturate-[10%] brightness-[1%] hue-rotate-[240deg]"
             />
@@ -110,7 +115,7 @@ const Hero = () => {
       {/* Mouse  */}
       <div
         className="flex w-full flex-col items-center mt-32 
-      md:mt-96 gap-4"
+      md:mt-96 gap-4 z-50"
       >
         <div className="h-10 w-5 outline outline-[6px] outline-purple-900 inline-flex justify-center pt-2 rounded-full">
           <motion.div
