@@ -23,7 +23,7 @@ const Hero = () => {
   } = useHero();
 
   return (
-    <div className="container w-screen  flex flex-col  items-center lg:items-start select-none mb-10 overflow-y-clip overflow-x-hidden h-[101rem]  ">
+    <div className="container w-screen  flex flex-col  items-center lg:items-start select-none overflow-y-clip overflow-x-hidden h-[101rem]  ">
       <div className="w-full z-50 flex ">
         <div className=" w-screen h-screen flex  items-center justify-center">
           <div className=" w-screen flex flex-col align-middle pl-16 ">
@@ -136,6 +136,7 @@ const Hero = () => {
           Scroll to learn more
         </p>
       </div>
+     
     </div>
   );
 };

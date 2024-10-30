@@ -27,3 +27,22 @@ export const MenuLink:MenuLinkProps[]=[
         icon:User,
     },
 ]
+
+
+export const dummy=[
+    {
+        id:"sdfdff",
+        name:"react",
+        image:" https://devicon-website.vercel.app/api/react/original.svg"
+    },
+    {
+        id:"sdfsdfdfsd",
+        name:"react",
+        image:" https://devicon-website.vercel.app/api/docker/original.svg"
+    },
+    {
+        id:"sdfsdfvsdfsd",
+        name:"react",
+        image:" https://devicon-website.vercel.app/api/tailwindcss/original.svg"
+    },
+]
