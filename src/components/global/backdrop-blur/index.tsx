@@ -5,14 +5,12 @@ type Props = {
 };
 const BackdropBlur = ({ className }: Props) => {
   return (
-    <div className=" w-screen relative">
-      <div
-        className={twMerge(
-          " rounded-full   blur-[90px]  opacity-[0.4] top-0 right-0 absolute",
-          className
-        )}
-      />
-    </div>
+    <div
+      className={twMerge(
+        " rounded-full w-full z-50  blur-[90px]  opacity-[0.4] ",
+        className
+      )}
+    />
   );
 };
 

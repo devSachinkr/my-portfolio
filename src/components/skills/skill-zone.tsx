@@ -6,10 +6,10 @@ import { closestCorners, DndContext } from "@dnd-kit/core";
 import SkillView from "./skill-view";
 
 const SkillZone = () => {
-  const { dragEnd, skills,sensors } = useSkills();
+  const { dragEnd, skills } = useSkills();
 
   return (
-    <DndContext sensors={sensors} collisionDetection={closestCorners} onDragEnd={dragEnd}>
+    <DndContext collisionDetection={closestCorners} onDragEnd={dragEnd}>
       <SkillView data={skills} />
     </DndContext>
   );

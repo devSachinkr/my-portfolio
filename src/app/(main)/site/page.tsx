@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Hero from "@/components/hero";
 import Navbar from "@/components/navbar";
 import Skills from "@/components/skills";
+import Projects from "@/components/projects";
 const page = () => {
   return (
     <div className="h-screen w-screen">
@@ -18,6 +19,7 @@ const page = () => {
           <Navbar />
           <Hero />
           <Skills />
+          <Projects/>
         </section>
       </motion.div>
     </div>
