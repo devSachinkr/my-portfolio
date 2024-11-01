@@ -6,6 +6,7 @@ import Hero from "@/components/hero";
 import Navbar from "@/components/navbar";
 import Skills from "@/components/skills";
 import Projects from "@/components/projects";
+import Contact from "@/components/contact";
 const page = () => {
   return (
     <div className="h-screen w-screen">
@@ -20,6 +21,7 @@ const page = () => {
           <Hero />
           <Skills />
           <Projects/>
+          <Contact/>
         </section>
       </motion.div>
     </div>

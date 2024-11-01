@@ -96,3 +96,34 @@ export const SKILL_ANIMATE: SkillAnimateProps[] = [
 ];
 
 
+export const dummyProjectData=[
+  {
+    name:"Devops",
+    desc:"xyzsddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    link:"#",
+    image:"https://images.unsplash.com/photo-1516410529446-2c777cb7366d?ixlib=rb-1.2.1&w=1000&q=80"
+
+  },
+  {
+    name:"Devops",
+    desc:"xyz",
+    link:"#",
+    image:"https://images.unsplash.com/photo-1516410529446-2c777cb7366d?ixlib=rb-1.2.1&w=1000&q=80"
+
+  },
+  {
+    name:"Devops",
+    desc:"xyz",
+    link:"#",
+    image:"https://images.unsplash.com/photo-1516410529446-2c777cb7366d?ixlib=rb-1.2.1&w=1000&q=80"
+
+  },
+  {
+    name:"Devops",
+    desc:"xyz",
+    link:"#",
+    image:"https://images.unsplash.com/photo-1516410529446-2c777cb7366d?ixlib=rb-1.2.1&w=1000&q=80"
+
+  },
+ 
+]
