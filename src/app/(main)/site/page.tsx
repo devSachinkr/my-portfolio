@@ -7,6 +7,8 @@ import Navbar from "@/components/navbar";
 import Skills from "@/components/skills";
 import Projects from "@/components/projects";
 import Contact from "@/components/contact";
+import Footer from "@/components/footer";
+
 const page = () => {
   return (
     <div className="h-screen w-screen">
@@ -22,6 +24,7 @@ const page = () => {
           <Skills />
           <Projects/>
           <Contact/>
+          <Footer/>
         </section>
       </motion.div>
     </div>

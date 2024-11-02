@@ -11,7 +11,7 @@ const GradientText = ({ className, classes, children }: Props) => {
   return (
     <div
       className={twMerge(
-        "bg-gradient-to-r text-transparent bg-clip-text relative",
+        "bg-gradient-to-r text-transparent bg-clip-text ",
         className
       )}
     >

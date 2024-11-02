@@ -5,7 +5,7 @@ import Image from "next/image";
 import ContactForm from "../global/form/contact";
 const Contact = () => {
   return (
-    <section className="container w-screen overflow-hidden overflow-x-hidden  mb-4">
+    <section className="container w-screen overflow-hidden overflow-x-hidden  mb-4 pb-10">
       <h1 className="flex items-center justify-center w-full text-6xl font-semibold ">
         <GradientText
           className="from-purple-800 via-fuchsia-500 to-purple-800 p-5"
