@@ -20,4 +20,5 @@ export const AuthFormSchema = z.object({
     .string()
     .min(8, { message: "Password must be at least 8 characters long" })
     .max(255, { message: "Password must be at least 255 characters long" }),
+    otp:z.string().min(1,{message:"OTP is required"}),
 });

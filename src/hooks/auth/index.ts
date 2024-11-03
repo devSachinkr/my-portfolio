@@ -4,10 +4,12 @@ import { signIn } from "@/actions/auth";
 import ToastNotify from "@/components/global/toast";
 import { AuthFormSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const useAuth = () => {
+  const [step, setStep] = useState<number>(1);
   const form = useForm<z.infer<typeof AuthFormSchema>>({
     mode: "onChange",
     resolver: zodResolver(AuthFormSchema),
@@ -15,10 +17,23 @@ const useAuth = () => {
       email: "",
       name: "",
       password: "",
+      otp: "",
     },
   });
-  const onSubmit = form.handleSubmit(async ({ email, name, password }) => {
-    const res = await signIn({ email, password, name });
+
+  type Props = {
+    next?: () => void;
+  };
+  const changeStep = ({ next }: Props) => {
+    setStep((prev) => (prev === 1 ? 2 : 1));
+    if (next) {
+      next();
+    }
+  };
+
+  const onSubmit = form.handleSubmit(async ({ email, name, password, otp }) => {
+    console.log(email, name, password, otp);
+    const res = await signIn({ email, password, name, userOtp: otp });
     if (res?.status === 200) {
       ToastNotify({
         title: "Success",
@@ -31,8 +46,8 @@ const useAuth = () => {
         msg: res?.message as string,
       });
     }
-    form.reset();
   });
-  return { form, onSubmit };
+
+  return { form, onSubmit, changeStep, step };
 };
 export { useAuth };
