@@ -1,10 +1,15 @@
-'use server';
-import { insertOtpInDb } from "@/actions/auth";
+"use server";
+import { insertOtpInDb, isOTPExist } from "@/actions/auth";
 import nodemailer from "nodemailer";
 function generateOtp() {
   return Math.floor(100000 + Math.random() * 900000).toString();
 }
-export const sendMail = async () => {
+export const sendMail = async (email: string) => {
+  if (!email) return;
+  const res = await isOTPExist(email);
+  if (res.status !== 200) {
+    return;
+  }
   const otp = generateOtp();
   try {
     const transport = nodemailer.createTransport({
@@ -21,9 +26,9 @@ export const sendMail = async () => {
       subject: "OTP Verification : ",
       text: `Your OTP is ${otp}`,
     });
-    
+
     console.log("Message sent: %s", info);
-    const res = await insertOtpInDb(otp);
+    const res = await insertOtpInDb(otp, email);
     if (res?.status === 200) {
       console.log("OTP inserted successfully");
     }

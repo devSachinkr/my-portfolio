@@ -64,7 +64,8 @@ model Tags {
 }
 
 model Otp {
-  id         String   @id @default(uuid())
-  otp        String @unique
-  expiryDate String?
+  id        String   @id @default(uuid())
+  otp       String   @unique
+  email     String   @unique
+  createdAt DateTime @default(now())
 }

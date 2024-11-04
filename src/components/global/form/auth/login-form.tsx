@@ -16,7 +16,7 @@ import { sendMail } from "@/lib/send-mail";
 import { cn } from "@/lib/utils";
 
 const LoginForm = () => {
-  const { form, onSubmit, step, changeStep } = useAuth();
+  const { form, onSubmit, step, changeStep, email, setEmail } = useAuth();
   return (
     <Form {...form}>
       <form onSubmit={onSubmit} className=" lg:w-[34vw] w-[70vw] relative">
@@ -45,7 +45,10 @@ const LoginForm = () => {
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem className="mt-4">
+                <FormItem
+                  className="mt-4"
+                  onChange={(val:React.ChangeEvent<HTMLInputElement>) => setEmail(val.target.value as string)}
+                >
                   <FormLabel className="text-white/90">Email</FormLabel>
                   <FormControl>
                     <Input
@@ -102,7 +105,7 @@ const LoginForm = () => {
             onClick={() => {
               return step === 1
                 ? changeStep({
-                    next:()=>sendMail(),
+                    next: () => sendMail(email),
                   })
                 : onSubmit();
             }}

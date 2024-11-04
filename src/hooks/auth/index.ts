@@ -4,12 +4,15 @@ import { signIn } from "@/actions/auth";
 import ToastNotify from "@/components/global/toast";
 import { AuthFormSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const useAuth = () => {
+  const router = useRouter();
   const [step, setStep] = useState<number>(1);
+  const [email, setEmail] = useState<string>("");
   const form = useForm<z.infer<typeof AuthFormSchema>>({
     mode: "onChange",
     resolver: zodResolver(AuthFormSchema),
@@ -32,7 +35,6 @@ const useAuth = () => {
   };
 
   const onSubmit = form.handleSubmit(async ({ email, name, password, otp }) => {
-    console.log(email, name, password, otp);
     const res = await signIn({ email, password, name, userOtp: otp });
     if (res?.status === 200) {
       ToastNotify({
@@ -40,6 +42,9 @@ const useAuth = () => {
         msg: res.message,
       });
       localStorage.setItem("token", JSON.stringify(res.data?.token));
+      localStorage.setItem("user", JSON.stringify(res.data));
+
+      router.push(`/site/dashboard/${res.data?.id as string}/home`);
     } else {
       ToastNotify({
         title: "Oops!",
@@ -48,6 +53,6 @@ const useAuth = () => {
     }
   });
 
-  return { form, onSubmit, changeStep, step };
+  return { form, onSubmit, changeStep, step, email, setEmail };
 };
 export { useAuth };

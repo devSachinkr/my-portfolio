@@ -6,6 +6,7 @@ import { DM_Sans } from "next/font/google";
 import { ThemeProvider } from "@/components/darkmode";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import AuthProvider from "@/provider/auth";
 const font = DM_Sans({ subsets: ["latin"] });
 export default function RootLayout({
   children,
@@ -22,8 +23,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Toaster />
+          <AuthProvider>
+            {children}
+            <Toaster />
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

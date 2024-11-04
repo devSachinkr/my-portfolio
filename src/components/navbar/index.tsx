@@ -7,8 +7,10 @@ import { useNavbar } from "@/hooks/navbar";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { MenuLink } from "@/lib/constants";
+import { useAuthUser } from "@/provider/auth";
 const Navbar = () => {
   const { isMenuActive, setIsMenuActive } = useNavbar();
+  const { user } = useAuthUser();
   return (
     <div className="w-screen container h-14 fixed top-0 z-[99999] bg-transparent flex items-center justify-between">
       {/* Left */}
@@ -40,12 +42,12 @@ const Navbar = () => {
           <AvatarImage src={logo.src} alt="logo" />
           <AvatarFallback>BOY</AvatarFallback>
         </Avatar>
-        <Link href="/login">
+        <Link href={user ? `/site/dashboard/${user.id}` : "/login"}>
           <Button
             className="border-[2px] border-purple-700 bg-transparent text-white hover:bg-accent"
             variant={"outline"}
           >
-            Login
+            {user ? "Dashboard" : "Login"}
           </Button>
         </Link>
 

@@ -1,4 +1,4 @@
-import { Award, FolderOpenDot, Home, LucideIcon, User } from "lucide-react";
+import { Award, BadgeDollarSign, FolderOpenDot, Home, HomeIcon, LucideIcon, User } from "lucide-react";
 
 type MenuLinkProps = {
   text: string;
@@ -126,4 +126,32 @@ export const dummyProjectData=[
 
   },
  
+]
+
+type DASHBOARD_NAV_LINK_PROPS={
+   name:string;
+   icon:LucideIcon;
+   path:string;
+   active?:boolean
+}
+
+export const DASHBOARD_NAV_LINK:DASHBOARD_NAV_LINK_PROPS[]=[
+  {
+    name:"Home",
+    icon:HomeIcon,
+    path:'/home',
+    active:true
+  },
+  {
+    name:"Skills",
+    icon:BadgeDollarSign,
+    path:'/skills',
+    active:false
+  },
+  {
+    name:"Project",
+    icon:FolderOpenDot,
+    path:'/projects',
+    active:false
+  },
 ]
