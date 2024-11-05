@@ -1,31 +1,72 @@
 "use client";
-import { dummy } from "@/lib/constants";
-import {
-  PointerSensor,
-  TouchSensor,
-  useSensor,
-  useSensors,
-} from "@dnd-kit/core";
-import { arrayMove} from "@dnd-kit/sortable";
-import { useState } from "react";
+import { addSkill, getSkill, getSkillWithoutId } from "@/actions/skills";
+import ToastNotify from "@/components/global/toast";
+import { AddSkillSchema } from "@/lib/schema";
 
-const useSkills = () => {
-  const [skills, setSkills] = useState(dummy);
+import { Skill } from "@prisma/client";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+const useSkills = ({ userId }: { userId?: string }) => {
+  
+  const [existingSkillData, setExistingSkillData] = useState<Skill[]>([]);
+  
+  const [allSkillData, setAllSkillData] = useState<Skill[]>([]);
 
-  const getSkillPos = (id: string) => {
-    return skills.findIndex((skill) => skill.id === id);
+  const getSkillData = async () => {
+    const res = await getSkill({ userId: userId as string });
+    if (res.status === 200) {
+      setExistingSkillData(res.data as Skill[]);
+      return;
+    }
+    setExistingSkillData([]);
   };
-  const dragEnd = (e) => {
-    const { active, over } = e;
-    if (active.id === over?.id) return;
-    setSkills((prev) => {
-      const originalPos = getSkillPos(active.id);
-      const newPos = getSkillPos(over?.id);
-      return arrayMove(prev, originalPos, newPos);
-    });
+
+  const getAllSkill = async () => {
+    const res = await getSkillWithoutId();
+    if (res.status !== 200) {
+      setAllSkillData([]);
+    }
+    setAllSkillData(res.data as Skill[]);
   };
-  const sensors = useSensors(useSensor(PointerSensor), useSensor(TouchSensor));
-  return { dragEnd, skills, sensors };
+
+  useEffect(() => {
+    if (userId) getSkillData();
+    getAllSkill();
+  }, [userId]);
+
+  return { existingSkillData, allSkillData};
 };
 
-export { useSkills };
+const useSkillForm = ({ userId }: { userId: string }) => {
+  const router = useRouter();
+
+  const form = useForm<z.infer<typeof AddSkillSchema>>({
+    mode: "onChange",
+    resolver: zodResolver(AddSkillSchema),
+    defaultValues: {
+      name: "",
+    },
+  });
+
+  const addSkillData = form.handleSubmit(async ({ name }) => {
+    const res = await addSkill({ userId, name });
+    if (res.status !== 200) {
+      ToastNotify({
+        title: "Oops!",
+        msg: res.message!,
+      });
+    }
+    ToastNotify({
+      title: "Success",
+      msg: res.message!,
+    });
+    router.refresh();
+  });
+  return { form, addSkillData };
+};
+
+
+export { useSkills, useSkillForm };

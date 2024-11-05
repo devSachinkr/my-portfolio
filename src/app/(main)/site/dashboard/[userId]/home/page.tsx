@@ -3,8 +3,8 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="flex items-center justify-center w-screen h-screen">
-      Home
+    <div className="flex  flex-col w-screen h-screen">
+        Pending
     </div>
   );
 };

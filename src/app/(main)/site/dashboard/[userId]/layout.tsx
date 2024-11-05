@@ -10,7 +10,7 @@ type Props = {
 
 const layout = ({ params: { userId }, children }: Props) => {
   return (
-    <div className="flex">
+    <div className="flex gap-5">
       <Sidebar userId={userId} />
       {children}
     </div>

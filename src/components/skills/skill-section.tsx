@@ -1,24 +1,22 @@
-import { dummy } from "@/lib/constants";
-import React, { CSSProperties } from "react";
+import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
+import { Skill } from "@prisma/client";
+import { getIconURLByName } from "@/lib/constants";
 type Props = {
-  data: (typeof dummy)[0];
+  data: Skill;
 };
 
-const SkillSection = ({ data: { id, image, name } }: Props) => {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id });
-
-  const style: CSSProperties = {
-    transition,
-    transform: CSS.Transform.toString(transform),
-  };
+const SkillSection = ({ data: { id, name } }: Props) => {
+ 
   return (
-    <div ref={setNodeRef} {...attributes} {...listeners} style={style}>
-      <Avatar>
-        <AvatarImage src={image} alt={name} width={50} height={50} />
+    <div>
+      <Avatar onClick={()=>alert(id)}>
+        <AvatarImage
+          src={getIconURLByName(name)}
+          alt={name}
+          width={50}
+          height={50}
+        />
         <AvatarFallback>Skill</AvatarFallback>
       </Avatar>
     </div>

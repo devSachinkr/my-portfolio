@@ -155,3 +155,7 @@ export const DASHBOARD_NAV_LINK:DASHBOARD_NAV_LINK_PROPS[]=[
     active:false
   },
 ]
+
+export const getIconURLByName=(name:string)=>{
+   return `https://devicon-website.vercel.app/api/${name}/original.svg`
+}

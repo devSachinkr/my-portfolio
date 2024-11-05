@@ -42,7 +42,7 @@ const Navbar = () => {
           <AvatarImage src={logo.src} alt="logo" />
           <AvatarFallback>BOY</AvatarFallback>
         </Avatar>
-        <Link href={user ? `/site/dashboard/${user.id}` : "/login"}>
+        <Link href={user ? `/site/dashboard/${user.id}/home` : "/login"}>
           <Button
             className="border-[2px] border-purple-700 bg-transparent text-white hover:bg-accent"
             variant={"outline"}

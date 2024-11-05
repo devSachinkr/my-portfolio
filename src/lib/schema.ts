@@ -22,3 +22,10 @@ export const AuthFormSchema = z.object({
     .max(255, { message: "Password must be at least 255 characters long" }),
     otp:z.string().min(1,{message:"OTP is required"}),
 });
+
+
+export const  AddSkillSchema=z.object({
+  name:z.string().min(1,{message:"Skill name is required"}).max(250,{
+    message:"Skills name must be shorter than 250 characters"
+  })
+})
