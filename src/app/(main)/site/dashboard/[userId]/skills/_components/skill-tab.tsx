@@ -9,6 +9,8 @@ import {
 import ExistingSkillContent from "./existing-skill-content";
 import { usePathname } from "next/navigation";
 import AddNewSkill from "./add-new-skill";
+import ExistingProject from "./existing-project";
+import AddProject from "./add-project";
 type Props = {
   type: "skill" | "project";
 };
@@ -27,10 +29,7 @@ const Tabs = ({ type }: Props) => {
           <TabsContent value="existing-skill" className="w-[80vw]">
             <ExistingSkillContent userId={userId} />
           </TabsContent>
-          <TabsContent
-            value="new-skill"
-            className=" w-[80vw]"
-          >
+          <TabsContent value="new-skill" className=" w-[80vw]">
             <AddNewSkill userId={userId} />
           </TabsContent>
         </ShadCnTabs>
@@ -39,15 +38,17 @@ const Tabs = ({ type }: Props) => {
 
     case "project": {
       return (
-        <ShadCnTabs defaultValue={"existing-project"} className="w-[500px]">
+        <ShadCnTabs defaultValue={"existing-project"} className="w-fit mx-auto">
           <TabsList>
             <TabsTrigger value="existing-project">Existing Project</TabsTrigger>
             <TabsTrigger value="new-project">Add Project</TabsTrigger>
           </TabsList>
-          <TabsContent value="existing-project">
-            Existing Project Content
+          <TabsContent value="existing-project" className="w-[80vw]">
+            <ExistingProject />
           </TabsContent>
-          <TabsContent value="new-project">Add Project Content</TabsContent>
+          <TabsContent value="new-project" className="w-[80vw]">
+            <AddProject />
+          </TabsContent>
         </ShadCnTabs>
       );
     }

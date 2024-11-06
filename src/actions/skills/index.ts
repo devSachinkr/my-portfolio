@@ -69,3 +69,22 @@ export const getSkillWithoutId = async () => {
     return generateResponse(500, "Failed to fetch skill", null);
   }
 };
+
+export const deleteSkill = async ({ skillId }: { skillId: string }) => {
+  if (!skillId) throw new Error("Skill ID must be provided");
+  try {
+    const res = await db.skill.delete({
+      where: {
+        id: skillId,
+      },
+    });
+
+    if (!res) {
+      return generateResponse(400, "Skill not deleted", null);
+    }
+    return generateResponse(200, "Skill deleted");
+  } catch (error) {
+    console.log(error);
+    return generateResponse(500, "Internal server Errro");
+  }
+};

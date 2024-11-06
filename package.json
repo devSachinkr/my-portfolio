@@ -13,7 +13,7 @@
     "@dnd-kit/sortable": "^8.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@hookform/resolvers": "^3.9.0",
-    "@prisma/client": "^5.21.1",
+    "@prisma/client": "^5.22.0",
     "@radix-ui/react-accordion": "^1.2.1",
     "@radix-ui/react-alert-dialog": "^1.1.2",
     "@radix-ui/react-aspect-ratio": "^1.1.0",
@@ -63,7 +63,6 @@
     "next-themes": "^0.3.0",
     "nodemailer": "^6.9.16",
     "otp-generator": "^4.0.1",
-    "prisma": "^5.21.1",
     "react": "^18",
     "react-beautiful-dnd": "^13.1.1",
     "react-day-picker": "^8.10.1",
@@ -90,6 +89,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
     "postcss": "^8",
+    "prisma": "^5.22.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }

@@ -1,5 +1,10 @@
 "use client";
-import { addSkill, getSkill, getSkillWithoutId } from "@/actions/skills";
+import {
+  addSkill,
+  deleteSkill,
+  getSkill,
+  getSkillWithoutId,
+} from "@/actions/skills";
 import ToastNotify from "@/components/global/toast";
 import { AddSkillSchema } from "@/lib/schema";
 
@@ -10,9 +15,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 const useSkills = ({ userId }: { userId?: string }) => {
-  
+  const router = useRouter();
   const [existingSkillData, setExistingSkillData] = useState<Skill[]>([]);
-  
+
   const [allSkillData, setAllSkillData] = useState<Skill[]>([]);
 
   const getSkillData = async () => {
@@ -32,12 +37,33 @@ const useSkills = ({ userId }: { userId?: string }) => {
     setAllSkillData(res.data as Skill[]);
   };
 
+  const deleteSkillData = async ({ skillId }: { skillId: string }) => {
+    if (!skillId)
+      return ToastNotify({
+        title: "Oops!",
+        msg: "Skill not found",
+      });
+    const res = await deleteSkill({ skillId });
+    if (res.status !== 200) {
+      return ToastNotify({
+        title: "Oops!",
+        msg: res.message,
+      });
+    }
+    if (res.status == 200) {
+      router.refresh();
+      return ToastNotify({
+        title: "Success",
+        msg: res.message,
+      });
+    }
+  };
   useEffect(() => {
     if (userId) getSkillData();
     getAllSkill();
   }, [userId]);
 
-  return { existingSkillData, allSkillData};
+  return { existingSkillData, allSkillData, deleteSkillData };
 };
 
 const useSkillForm = ({ userId }: { userId: string }) => {
@@ -67,6 +93,5 @@ const useSkillForm = ({ userId }: { userId: string }) => {
   });
   return { form, addSkillData };
 };
-
 
 export { useSkills, useSkillForm };
