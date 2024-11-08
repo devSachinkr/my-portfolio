@@ -20,12 +20,25 @@ export const AuthFormSchema = z.object({
     .string()
     .min(8, { message: "Password must be at least 8 characters long" })
     .max(255, { message: "Password must be at least 255 characters long" }),
-    otp:z.string().min(1,{message:"OTP is required"}),
+  otp: z.string().min(1, { message: "OTP is required" }),
 });
 
+export const AddSkillSchema = z.object({
+  name: z.string().min(1, { message: "Skill name is required" }).max(250, {
+    message: "Skills name must be shorter than 250 characters",
+  }),
+});
 
-export const  AddSkillSchema=z.object({
-  name:z.string().min(1,{message:"Skill name is required"}).max(250,{
-    message:"Skills name must be shorter than 250 characters"
-  })
-})
+export const ProjectFormSchema = z.object({
+  name: z
+    .string()
+    .min(3, { message: "Name must be greater than 3 character" })
+    .max(255, { message: "Name must be shorter than 255 character " }),
+
+  description: z
+    .string()
+    .min(16, { message: "Name must be greater than 16 character" })
+    .max(555, { message: "Name must be shorter than 555 character " }),
+
+ 
+});

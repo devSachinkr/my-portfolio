@@ -15,6 +15,8 @@ model User {
   skill    Skill[]
   Project  Project[]
   token    String
+  createdAt DateTime  @default(now())
+
 }
 
 model Skill {
@@ -22,6 +24,8 @@ model Skill {
   name   String
   user   User   @relation(fields: [userId], references: [id])
   userId String
+  createdAt DateTime  @default(now())
+
 }
 
 model Project {
@@ -33,14 +37,16 @@ model Project {
   tags        Tags[]
   thumbnail   String[]
   description String
+  createdAt DateTime?  @default(now())
 }
 
 model TechStack {
   id          String  @id @default(uuid())
-  name        String
-  description String?
-  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  projectId   String
+  name        String  @default("Untiltled")
+  description String @default("Not available")
+  project     Project? @relation(fields: [projectId],references: [id],onDelete: Cascade)
+  projectId String?
+  createdAt DateTime?  @default(now())
 }
 
 model Message {
@@ -49,13 +55,15 @@ model Message {
   email   String
   number  String @default("")
   message String
+  createdAt DateTime  @default(now())
 }
 
 model Tags {
   id        String  @id @default(uuid())
-  name      String
-  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  projectId String
+  name      String  @default("Untitled") 
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String?
+  createdAt DateTime?  @default(now())
 }
 
 model Otp {

@@ -47,7 +47,7 @@ const Tabs = ({ type }: Props) => {
             <ExistingProject />
           </TabsContent>
           <TabsContent value="new-project" className="w-[80vw]">
-            <AddProject />
+            <AddProject userId={userId}/>
           </TabsContent>
         </ShadCnTabs>
       );
