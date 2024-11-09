@@ -40,5 +40,9 @@ export const ProjectFormSchema = z.object({
     .min(16, { message: "Name must be greater than 16 character" })
     .max(555, { message: "Name must be shorter than 555 character " }),
 
- 
+  hostedLink: z.string().min(1, { message: "Hosted link is required" }),
+
+  githubLink: z.string().min(1, { message: "Hosted link is required" }),
+  projectCreatedAt: z.string().optional().default(""),
+  hostedPlatform: z.string().min(1, { message: "Hosted link is required" }),
 });

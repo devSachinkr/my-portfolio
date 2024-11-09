@@ -17,7 +17,7 @@ const Footer = () => {
             Github
           </Link>
           <Link
-            href="https://www.instagram.com/sachin_65400/"
+            href="https://www.instagram.com/akatsuki_65400/"
             target="_blank"
             rel="noopener noreferrer"
             className="p-3 flex items-center justify-center gap-2 hover:text-muted-foreground transition-all duration-300"

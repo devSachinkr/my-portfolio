@@ -15,7 +15,7 @@ const GradientText = ({ className, classes, children }: Props) => {
         className
       )}
     >
-      <div className={twMerge("font-mono", classes)}>{children}</div>
+      <div className={twMerge("font-mono py-2", classes)}>{children}</div>
     </div>
   );
 };

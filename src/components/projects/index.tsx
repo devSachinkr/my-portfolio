@@ -1,17 +1,18 @@
 import React from "react";
 import GradientText from "../global/GradientText";
 import CardSwiper from "./card-swiper";
-import { dummyProjectData } from "@/lib/constants";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Scrollbar, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { useProject } from "@/hooks/project";
 type Props = {
   showHeader?: boolean;
 };
 const Projects = ({ showHeader = true }: Props) => {
+  const { allProjectDetails } = useProject();
   return (
     <section className="container w-screen overflow-hidden overflow-x-hidden  mb-4 pb-10">
       {showHeader && (
@@ -24,19 +25,36 @@ const Projects = ({ showHeader = true }: Props) => {
           </GradientText>
         </h1>
       )}
-
-      <div className="w-full  mb-10 rounded-lg h-[60vh] container p-5 flex flex-wrap  relative">
+      {/* For Desktop */}
+      <div className=" hidden md:flex w-full  mb-10 rounded-lg h-[60vh] container p-5  flex-wrap  relative">
         <div className="absolute w-72 h-72 right-52 bg-gradient-to-bl  from-red-600 via-lime-800 to-blue-600 blur-[90px] rounded-full aspect-square " />
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           spaceBetween={50}
-          slidesPerView={2}
+          slidesPerView={allProjectDetails.length === 1 ? 1 : 2}
           navigation
           pagination={{ clickable: true }}
         >
-          {dummyProjectData.map((p, idx) => (
+          {allProjectDetails.map((p, idx) => (
             <SwiperSlide key={idx}>
-              <CardSwiper />
+              <CardSwiper data={p} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      {/* For Mobile */}
+      <div className=" md:hidden flex w-full  mb-10 rounded-lg h-[60vh] container p-5  flex-wrap  relative">
+        <div className="absolute w-72 h-72 right-52 bg-gradient-to-bl  from-red-600 via-lime-800 to-blue-600 blur-[90px] rounded-full aspect-square " />
+        <Swiper
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          spaceBetween={50}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+        >
+          {allProjectDetails.map((p, idx) => (
+            <SwiperSlide key={idx}>
+              <CardSwiper data={p} />
             </SwiperSlide>
           ))}
         </Swiper>

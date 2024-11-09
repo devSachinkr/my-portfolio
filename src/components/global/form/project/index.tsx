@@ -44,6 +44,7 @@ const ProjectForm = ({ userId }: Props) => {
     handleTechStack,
     uploadTHumbnail,
     isUploading,
+    loading,
   } = useProjectForm({
     userId,
   });
@@ -64,7 +65,10 @@ const ProjectForm = ({ userId }: Props) => {
             onClick={() => uploadTHumbnail()}
             className="hover:bg-purple-700 border-[1px] border-purple-600 bg-transparent flex items-center justify-center"
           >
-            <Spinner loading={isUploading} className="flex items-center justify-center gap-3">
+            <Spinner
+              loading={isUploading}
+              className="flex items-center justify-center gap-3"
+            >
               <Upload size={20} />
               Upload
             </Spinner>
@@ -105,6 +109,75 @@ const ProjectForm = ({ userId }: Props) => {
             </FormItem>
           )}
         />
+        <Separator className="bg-purple-600 mt-3" />
+        <FormField
+          control={form.control}
+          name="hostedLink"
+          render={({ field }) => (
+            <FormItem className="mt-4">
+              <FormItem>
+                <FormLabel>Hosted Link</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="example.vercel.app / example.netlify.app / example.com"
+                    {...field}
+                  />
+                </FormControl>
+              </FormItem>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="hostedPlatform"
+          render={({ field }) => (
+            <FormItem className="mt-4">
+              <FormItem>
+                <FormLabel>Hosted Platform</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="vercel / netlify / Hostinger / Go-Daddy / more..."
+                    {...field}
+                  />
+                </FormControl>
+              </FormItem>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="githubLink"
+          render={({ field }) => (
+            <FormItem className="mt-4">
+              <FormItem>
+                <FormLabel>Github Link</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter Github Link" {...field} />
+                </FormControl>
+              </FormItem>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="projectCreatedAt"
+          render={({ field }) => (
+            <FormItem className="mt-4">
+              <FormItem>
+                <FormLabel>Project Duration :- (Optional)</FormLabel>
+                <FormControl>
+                  <Input placeholder="15-AUG-2024  to 16-DEC-2024" {...field} />
+                </FormControl>
+              </FormItem>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Separator className="bg-purple-600 mt-3" />
+
         {/* Display Tags */}
         <Label className="">All Tags</Label>
 
@@ -181,7 +254,11 @@ const ProjectForm = ({ userId }: Props) => {
                 {allTechStack?.length !== 0 ? (
                   <Accordion type="multiple">
                     {allTechStack.map((tech) => (
-                      <AccordionItem value={tech.name} className="px-5 py-2">
+                      <AccordionItem
+                        key={tech.name}
+                        value={tech.name}
+                        className="px-5 py-2"
+                      >
                         <AccordionTrigger className="font-semibold text-[1.2rem]">
                           {tech.name}
                         </AccordionTrigger>
@@ -207,7 +284,12 @@ const ProjectForm = ({ userId }: Props) => {
             type="submit"
             className="hover:bg-purple-700 bg-transparent border-[1px] border-purple-600"
           >
-            Save
+            <Spinner
+              loading={loading}
+              className="flex items-center justify-center gap-3"
+            >
+              Save
+            </Spinner>
           </Button>
         </div>
       </form>

@@ -1,30 +1,34 @@
-import { dummyProjectData } from "@/lib/constants";
 import React from "react";
 import { Card, CardContent } from "../ui/card";
 import Image from "next/image";
 import Link from "next/link";
+import { PROJECT_WITH_TECH_STACK_AND_TAGS } from "@/lib/types";
 
 type Props = {
-  data: (typeof dummyProjectData)[0];
+  data: PROJECT_WITH_TECH_STACK_AND_TAGS[0];
   totalLength: number;
-  idx: number;
+  currentIdx: number;
+  thumbnail: string;
 };
 
 const ProjectCard = ({
-  data: { desc, image, link, name },
-  idx,
+  // WIP:: Here you get ID for delete the project
+  data: { id, name, description: desc },
+  currentIdx,
   totalLength,
+  thumbnail,
 }: Props) => {
   return (
     <Card className="h-[350px] w-[250px] rounded-lg">
       <CardContent>
         <div className="w-full flex flex-col items-center justify-center  relative">
           <div className="w-6 h-6 rounded-full aspect-square bg-gradient-to-l from-purple-600 to-fuchsia-600 absolute top-2 left-[10px] text-sm font-semibold flex items-center justify-center text-washed-blue-50">
-            {idx + 1}/{totalLength}
+            {currentIdx + 1}/{totalLength}
           </div>
-          <Link href={link}>
+          <Link href={`/site/project/${id}`}>
             <Image
-              src={image}
+              key={currentIdx}
+              src={thumbnail}
               alt={name}
               width={250}
               height={220}

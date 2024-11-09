@@ -1,4 +1,13 @@
-import { Award, BadgeDollarSign, FolderOpenDot, Home, HomeIcon, LucideIcon, User } from "lucide-react";
+import {
+  Award,
+  BadgeDollarSign,
+  FolderOpenDot,
+  Home,
+  HomeIcon,
+  LogOut,
+  LucideIcon,
+  User,
+} from "lucide-react";
 
 type MenuLinkProps = {
   text: string;
@@ -95,67 +104,71 @@ export const SKILL_ANIMATE: SkillAnimateProps[] = [
   },
 ];
 
-
-export const dummyProjectData=[
+export const dummyProjectData = [
   {
-    name:"Devops",
-    desc:"xyzsddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
-    link:"#",
-    image:"https://images.unsplash.com/photo-1516410529446-2c777cb7366d?ixlib=rb-1.2.1&w=1000&q=80"
-
+    name: "Devops",
+    desc: "xyzsddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    link: "#",
+    image:
+      "https://images.unsplash.com/photo-1516410529446-2c777cb7366d?ixlib=rb-1.2.1&w=1000&q=80",
   },
   {
-    name:"Devops",
-    desc:"xyz",
-    link:"#",
-    image:"https://images.unsplash.com/photo-1516410529446-2c777cb7366d?ixlib=rb-1.2.1&w=1000&q=80"
-
+    name: "Devops",
+    desc: "xyz",
+    link: "#",
+    image:
+      "https://images.unsplash.com/photo-1516410529446-2c777cb7366d?ixlib=rb-1.2.1&w=1000&q=80",
   },
   {
-    name:"Devops",
-    desc:"xyz",
-    link:"#",
-    image:"https://images.unsplash.com/photo-1516410529446-2c777cb7366d?ixlib=rb-1.2.1&w=1000&q=80"
-
+    name: "Devops",
+    desc: "xyz",
+    link: "#",
+    image:
+      "https://images.unsplash.com/photo-1516410529446-2c777cb7366d?ixlib=rb-1.2.1&w=1000&q=80",
   },
   {
-    name:"Devops",
-    desc:"xyz",
-    link:"#",
-    image:"https://images.unsplash.com/photo-1516410529446-2c777cb7366d?ixlib=rb-1.2.1&w=1000&q=80"
-
+    name: "Devops",
+    desc: "xyz",
+    link: "#",
+    image:
+      "https://images.unsplash.com/photo-1516410529446-2c777cb7366d?ixlib=rb-1.2.1&w=1000&q=80",
   },
- 
-]
+];
 
-type DASHBOARD_NAV_LINK_PROPS={
-   name:string;
-   icon:LucideIcon;
-   path:string;
-   active?:boolean
-}
+type DASHBOARD_NAV_LINK_PROPS = {
+  name: string;
+  icon: LucideIcon;
+  path: string;
+  active?: boolean;
+};
 
-export const DASHBOARD_NAV_LINK:DASHBOARD_NAV_LINK_PROPS[]=[
+export const DASHBOARD_NAV_LINK: DASHBOARD_NAV_LINK_PROPS[] = [
   {
-    name:"Home",
-    icon:HomeIcon,
-    path:'/home',
-    active:true
-  },
-  {
-    name:"Skills",
-    icon:BadgeDollarSign,
-    path:'/skills',
-    active:false
+    name: "Home",
+    icon: HomeIcon,
+    path: "/home",
+    active: true,
   },
   {
-    name:"Project",
-    icon:FolderOpenDot,
-    path:'/projects',
-    active:false
+    name: "Skills",
+    icon: BadgeDollarSign,
+    path: "/skills",
+    active: false,
   },
-]
+  {
+    name: "Project",
+    icon: FolderOpenDot,
+    path: "/projects",
+    active: false,
+  },
+  {
+    name: "Logout",
+    icon: LogOut,
+    path: "#",
+    active: false,
+  },
+];
 
-export const getIconURLByName=(name:string)=>{
-   return `https://devicon-website.vercel.app/api/${name}/original.svg`
-}
+export const getIconURLByName = (name: string) => {
+  return `https://devicon-website.vercel.app/api/${name}/original.svg`;
+};

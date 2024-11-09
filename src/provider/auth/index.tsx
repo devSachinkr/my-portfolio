@@ -8,7 +8,6 @@ type InitialStateProps = {
   user: User | null;
 };
 
-
 type AuthProviderProps = {
   children: React.ReactNode;
 };
@@ -52,7 +51,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, [user]);
 
-  const contextValue = React.useMemo(() => ({ token, user, }), [token, user]);
+  const contextValue = React.useMemo(() => ({ token, user }), [token, user]);
 
   return (
     <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>

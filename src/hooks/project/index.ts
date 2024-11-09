@@ -1,17 +1,21 @@
 "use client";
 
-import { upsertProject } from "@/actions/project";
+import {
+  getAllProject,
+  getProjectDetails,
+  upsertProject,
+} from "@/actions/project";
 import ToastNotify from "@/components/global/toast";
 import { uploadFile } from "@/lib/cloudinary";
 import { ProjectFormSchema } from "@/lib/schema";
+import { PROJECT_WITH_TECH_STACK_AND_TAGS } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Project, Tags, TechStack } from "@prisma/client";
-import { useState } from "react";
-import { ControllerRenderProps, useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
 import { v4 } from "uuid";
 import { z } from "zod";
-
-const useProject = () => {};
 
 const useProjectForm = ({
   userId,
@@ -33,13 +37,18 @@ const useProjectForm = ({
   const [allTechStack, setAllTechStack] = useState<
     { name: string; description: string }[]
   >([]);
-  const [isUploading,setIsUploading]=useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
   const form = useForm<z.infer<typeof ProjectFormSchema>>({
     mode: "onChange",
     resolver: zodResolver(ProjectFormSchema),
     defaultValues: {
       name: formDefaultData?.name || "",
       description: formDefaultData?.description || "",
+      githubLink: formDefaultData?.githubLink || "",
+      hostedLink: formDefaultData?.hostedLink || "",
+      projectCreatedAt: formDefaultData?.projectCreatedAt || "",
+      hostedPlatform: formDefaultData?.hostedPlatform || "",
     },
   });
 
@@ -124,49 +133,73 @@ const useProjectForm = ({
         title: "Oops!",
         msg: "Failed to upload Thumbnails ",
       });
-    }finally{
-        setIsUploading(false);
+    } finally {
+      setIsUploading(false);
     }
   };
 
-  const onSubmit = form.handleSubmit(async ({ description, name }) => {
-    if (!userId) {
-      return ToastNotify({
-        title: "Oops!",
-        msg: "User ID must be provided",
-      });
-    }
-
-    if (uploadedUrls.length) {
-      const res = await upsertProject({
-        name,
-        description,
-        id: formDefaultData?.id || v4(),
-        thumbnail: uploadedUrls,
-        userId,
-        tags: AllTags,
-        techStack: allTechStack,
-      });
-
-      if (res.status !== 200) {
+  const onSubmit = form.handleSubmit(
+    async ({
+      description,
+      name,
+      githubLink,
+      hostedLink,
+      hostedPlatform,
+      projectCreatedAt,
+    }) => {
+      setLoading(true);
+      if (!userId) {
         return ToastNotify({
           title: "Oops!",
-          msg: res.message,
+          msg: "User ID must be provided",
         });
       }
-      if (res.status === 200) {
+
+      if (uploadedUrls.length) {
+        const res = await upsertProject({
+          name,
+          description,
+          githubLink,
+          hostedLink,
+          hostedPlatform,
+          projectCreatedAt,
+          id: formDefaultData?.id || v4(),
+          thumbnail: uploadedUrls,
+          userId,
+          tags: AllTags,
+          techStack: allTechStack,
+        });
+
+        if (res.status !== 200) {
+          setLoading(false);
+          return ToastNotify({
+            title: "Oops!",
+            msg: res.message,
+          });
+        }
+        if (res.status === 200) {
+          setLoading(false);
+          setTechName("");
+          setTechDesc("");
+          setTagValue("");
+          setAllTags([]);
+          setAllTechStack([]);
+          form.reset();
+          return ToastNotify({
+            title: "Success",
+            msg: "Changes Reflected!",
+          });
+        }
+      } else {
+        setLoading(false);
+
         return ToastNotify({
-          title: "Success",
-          msg: "Changes Reflected!",
+          title: "Oops!",
+          msg: "Please upload thumbnail",
         });
       }
-    } else {
-      return ToastNotify({
-        title: "Oops!",
-        msg: "Please upload thumbnail",
-      });
     }
-  });
+  );
 
   return {
     form,
@@ -184,7 +217,81 @@ const useProjectForm = ({
     techName,
     handleTechStack,
     uploadTHumbnail,
-    isUploading
+    isUploading,
+    loading,
   };
+};
+
+const useProject = (projectId?: string) => {
+  const [allProjectDetails, setAllProjectDetails] =
+    useState<PROJECT_WITH_TECH_STACK_AND_TAGS>([]);
+  const [projectDetails, setProjectDetails] = useState<
+    PROJECT_WITH_TECH_STACK_AND_TAGS[0] | null
+  >(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [isFetching, setIsFetching] = useState<boolean>(false);
+
+  const [tagColors, setTagColors] = useState<string[]>([]);
+
+  const getAllProjects = async () => {
+    setLoading(true);
+    const res = await getAllProject();
+    console.log(res);
+    if (res.status === 200) {
+      setLoading(false);
+      return setAllProjectDetails(res.data as PROJECT_WITH_TECH_STACK_AND_TAGS);
+    }
+    setAllProjectDetails([]);
+    setLoading(false);
+  };
+
+  const getProjectDetail = async () => {
+    setIsFetching(true);
+    if (!projectId) return;
+    const res = await getProjectDetails({ projectId });
+    if (res.status !== 200) {
+      setProjectDetails(null);
+      setIsFetching(false);
+      return ToastNotify({
+        title: "Oops!",
+        msg: res.message,
+      });
+    }
+
+    if (res.status === 200) {
+      setIsFetching(false);
+
+      return setProjectDetails(res.data as PROJECT_WITH_TECH_STACK_AND_TAGS[0]);
+    }
+  };
+
+  function generateRandomColor() {
+    return `#${Math.floor(Math.random() * 16777215)
+      .toString(16)
+      .padStart(6, "0")}`;
+  }
+
+  useEffect(() => {
+    if (projectDetails) {
+      setTagColors(projectDetails.tags.map(() => generateRandomColor()));
+
+      const colorInterval = setInterval(() => {
+        setTagColors(projectDetails.tags.map(() => generateRandomColor()));
+      }, 1000);
+
+      return () => clearInterval(colorInterval);
+    }
+  }, [projectDetails]);
+
+  useEffect(() => {
+    if (projectId) {
+      getProjectDetail();
+    }
+  }, [projectId]);
+  useEffect(() => {
+    getAllProjects();
+  }, []);
+  console.log(allProjectDetails);
+  return { allProjectDetails, loading, isFetching, projectDetails, tagColors };
 };
 export { useProject, useProjectForm };

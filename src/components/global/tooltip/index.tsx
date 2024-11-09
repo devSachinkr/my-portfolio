@@ -8,7 +8,7 @@ import {
 export const Tooltip = ({
   tooltipContent,
   tooltipTrigger,
-  showContent,
+  showContent=true,
 }: {
   tooltipContent: React.ReactNode | string;
   tooltipTrigger: React.ReactNode;

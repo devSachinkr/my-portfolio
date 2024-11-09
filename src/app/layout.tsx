@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/darkmode";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import AuthProvider from "@/provider/auth";
+import { ModalProvider } from "@/provider/modal";
 const font = DM_Sans({ subsets: ["latin"] });
 export default function RootLayout({
   children,
@@ -23,10 +24,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
-            {children}
-            <Toaster />
-          </AuthProvider>
+          <ModalProvider>
+            <AuthProvider>
+              {children}
+              <Toaster />
+            </AuthProvider>
+          </ModalProvider>
         </ThemeProvider>
       </body>
     </html>
