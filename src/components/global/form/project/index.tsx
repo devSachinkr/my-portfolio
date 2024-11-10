@@ -23,11 +23,13 @@ import { useProjectForm } from "@/hooks/project";
 import { Ban, Upload } from "lucide-react";
 import React from "react";
 import Spinner from "../../spinner";
+import { PROJECT_WITH_TECH_STACK_AND_TAGS } from "@/lib/types";
 type Props = {
   userId: string;
+  data?: PROJECT_WITH_TECH_STACK_AND_TAGS[0]| null;
 };
 
-const ProjectForm = ({ userId }: Props) => {
+const ProjectForm = ({ userId, data }: Props) => {
   const {
     form,
     handleFileChange,
@@ -47,6 +49,7 @@ const ProjectForm = ({ userId }: Props) => {
     loading,
   } = useProjectForm({
     userId,
+    formDefaultData: data || null,
   });
   return (
     <Form {...form}>

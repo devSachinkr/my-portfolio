@@ -19,7 +19,7 @@ const SkillSection = ({ data: { id, name } }: Props) => {
     <div className=" flex flex-col justify-center w-full items-center gap-4 flex-wrap ">
       <Avatar>
         <AvatarImage
-          src={getIconURLByName(name)}
+          src={getIconURLByName(name.toLowerCase())}
           alt={name}
           width={50}
           height={50}

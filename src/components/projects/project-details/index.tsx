@@ -36,10 +36,10 @@ const ProjectDetails = ({ data, tagColors }: Props) => {
                 </div>
                 <div className="flex flex-col  items-center">
                   <div className="flex items-center justify-center gap-3">
-                    <Link href={`https://${data.githubLink!}`} target="_blank">
+                    <Link href={`${data.githubLink!}`} target="_blank">
                       <FaGithub size={35} />
                     </Link>
-                    <Link href={`https://${data.hostedLink!}`} target="_blank">
+                    <Link href={`${data.hostedLink!}`} target="_blank">
                       <Tooltip
                         tooltipTrigger={<Link2 size={35} />}
                         tooltipContent={"Live Link"}

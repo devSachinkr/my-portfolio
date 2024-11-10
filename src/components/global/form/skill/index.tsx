@@ -36,7 +36,7 @@ const AddSkillForm = ({ userId }: Props) => {
             render={({ field }) => (
               <FormItem
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setValue(e.target.value)
+                  setValue(e.target.value.toLowerCase())
                 }
               >
                 <FormLabel>Skill Name</FormLabel>

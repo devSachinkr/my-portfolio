@@ -89,6 +89,7 @@ const useSkillForm = ({ userId }: { userId: string }) => {
       title: "Success",
       msg: res.message!,
     });
+    form.reset();
     router.refresh();
   });
   return { form, addSkillData };

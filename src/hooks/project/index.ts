@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  deleteProjectByID,
   getAllProject,
   getProjectDetails,
   upsertProject,
@@ -9,11 +10,11 @@ import ToastNotify from "@/components/global/toast";
 import { uploadFile } from "@/lib/cloudinary";
 import { ProjectFormSchema } from "@/lib/schema";
 import { PROJECT_WITH_TECH_STACK_AND_TAGS } from "@/lib/types";
+import { useModal } from "@/provider/modal";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Project, Tags, TechStack } from "@prisma/client";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-
 import { v4 } from "uuid";
 import { z } from "zod";
 
@@ -22,16 +23,12 @@ const useProjectForm = ({
   formDefaultData,
 }: {
   userId: string;
-  formDefaultData?: Project & {
-    tags: Partial<Tags[]>;
-    techStack: Partial<TechStack[]>;
-  };
+  formDefaultData?: PROJECT_WITH_TECH_STACK_AND_TAGS[0] | null;
 }) => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [uploadedUrls, setUploadedUrls] = useState<string[]>([]);
   const [tagValue, setTagValue] = useState<string>("");
   const [AllTags, setAllTags] = useState<{ name: string }[]>([]);
-  console.log(selectedFiles);
   const [techDesc, setTechDesc] = useState<string>("");
   const [techName, setTechName] = useState<string>("");
   const [allTechStack, setAllTechStack] = useState<
@@ -230,13 +227,12 @@ const useProject = (projectId?: string) => {
   >(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [isFetching, setIsFetching] = useState<boolean>(false);
-
+  const router = useRouter();
   const [tagColors, setTagColors] = useState<string[]>([]);
-
+  const {setClose}=useModal();
   const getAllProjects = async () => {
     setLoading(true);
     const res = await getAllProject();
-    console.log(res);
     if (res.status === 200) {
       setLoading(false);
       return setAllProjectDetails(res.data as PROJECT_WITH_TECH_STACK_AND_TAGS);
@@ -271,6 +267,24 @@ const useProject = (projectId?: string) => {
       .padStart(6, "0")}`;
   }
 
+  const deleteProject = async (id: string) => {
+    if (!id) return;
+    const res = await deleteProjectByID(id);
+    if (res.status === 200) {
+      router.refresh();
+      setClose();
+      return ToastNotify({
+        title: "Success",
+        msg: "Project deleted",
+      });
+    }
+    setClose()
+    return ToastNotify({
+      title: "Oops!",
+      msg: "Failed to delete Project ",
+    });
+  };
+
   useEffect(() => {
     if (projectDetails) {
       setTagColors(projectDetails.tags.map(() => generateRandomColor()));
@@ -291,7 +305,14 @@ const useProject = (projectId?: string) => {
   useEffect(() => {
     getAllProjects();
   }, []);
-  console.log(allProjectDetails);
-  return { allProjectDetails, loading, isFetching, projectDetails, tagColors };
+  return {
+    allProjectDetails,
+    loading,
+    isFetching,
+    projectDetails,
+    tagColors,
+    deleteProject,
+    generateRandomColor,
+  };
 };
 export { useProject, useProjectForm };

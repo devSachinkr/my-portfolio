@@ -137,3 +137,22 @@ export const getProjectDetails = async ({
     return generateResponse(500, "Internal server error", null);
   }
 };
+
+
+export const deleteProjectByID=async(projectId:string)=>{
+    if(!projectId) return generateResponse(404,"Project ID must Provided",null);
+
+    try {
+       const res=await db.project.delete({
+        where:{id:projectId},
+       })
+       if(!res){
+        return generateResponse(400,"Failed to delete project",null);
+       }
+
+       return generateResponse(200,"Project Deleted",null);
+    } catch (error) {
+      console.log(error)
+      return generateResponse(500,"Internal server error",null);
+    }
+}

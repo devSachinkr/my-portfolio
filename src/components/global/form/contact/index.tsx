@@ -92,7 +92,7 @@ const ContactForm = () => {
         <div className="w-full flex justify-between">
           <div className="flex items-center justify-center gap-4 mt-3">
             <Link
-              href={"https://www.instagram.com/sachin_65400/"}
+              href={"https://www.instagram.com/akatsuki_65400/"}
               target="_blank"
               className="flex items-center justify-center w-10 h-10 rounded-full aspect-square bg-gradient-to-l from-purple-600 to-fuchsia-700"
             >

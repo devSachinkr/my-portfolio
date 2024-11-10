@@ -37,24 +37,6 @@ export const MenuLink: MenuLinkProps[] = [
   },
 ];
 
-export const dummy = [
-  {
-    id: "sdfdff",
-    name: "react",
-    image: " https://devicon-website.vercel.app/api/react/original.svg",
-  },
-  {
-    id: "sdfsdfdfsd",
-    name: "react",
-    image: " https://devicon-website.vercel.app/api/docker/original.svg",
-  },
-  {
-    id: "sdfsdfvsdfsd",
-    name: "react",
-    image: " https://devicon-website.vercel.app/api/figma/original.svg",
-  },
-];
-
 type SkillAnimateProps = {
   iconName: string;
   alt: string;
@@ -101,37 +83,6 @@ export const SKILL_ANIMATE: SkillAnimateProps[] = [
     iconName: "react",
     alt: "React",
     rotate: 360,
-  },
-];
-
-export const dummyProjectData = [
-  {
-    name: "Devops",
-    desc: "xyzsddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
-    link: "#",
-    image:
-      "https://images.unsplash.com/photo-1516410529446-2c777cb7366d?ixlib=rb-1.2.1&w=1000&q=80",
-  },
-  {
-    name: "Devops",
-    desc: "xyz",
-    link: "#",
-    image:
-      "https://images.unsplash.com/photo-1516410529446-2c777cb7366d?ixlib=rb-1.2.1&w=1000&q=80",
-  },
-  {
-    name: "Devops",
-    desc: "xyz",
-    link: "#",
-    image:
-      "https://images.unsplash.com/photo-1516410529446-2c777cb7366d?ixlib=rb-1.2.1&w=1000&q=80",
-  },
-  {
-    name: "Devops",
-    desc: "xyz",
-    link: "#",
-    image:
-      "https://images.unsplash.com/photo-1516410529446-2c777cb7366d?ixlib=rb-1.2.1&w=1000&q=80",
   },
 ];
 

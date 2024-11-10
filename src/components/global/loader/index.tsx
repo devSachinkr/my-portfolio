@@ -15,7 +15,7 @@ const Loader = () => {
       transition={{ duration: 0.5 }}
       className="w-screen h-screen fixed left-0 top-0 flex items-center justify-center z-50 bg-black "
     >
-      <Image src={gif.src} alt="" width={65} height={65} />
+      <Image src={gif.src} priority alt="ghost" width={65} height={65} />
     </motion.div>
   );
 };
