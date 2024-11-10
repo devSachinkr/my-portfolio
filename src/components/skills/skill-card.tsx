@@ -46,7 +46,7 @@ const SkillCard = ({ href, className, rotate }: Props) => {
         className
       )}
     >
-      <CardContent className="w-10">
+      <CardContent className="w-10 p-0">
         <Avatar className="flex items-center justify-center w-10">
           <AvatarImage
             src={` https://devicon-website.vercel.app/api/${href}/original.svg`}
