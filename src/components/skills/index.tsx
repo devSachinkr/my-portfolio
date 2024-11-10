@@ -3,7 +3,6 @@ import React from "react";
 import GradientText from "../global/GradientText";
 import SkillZone from "./skill-zone";
 import SkillAnimation from "./skill-animation";
-import { useNavbar } from "@/hooks/navbar";
 const Skills = () => {
   return (
     <div className="container w-screen  overflow-hidden mb-10 lg:pb-16" id="skill">
