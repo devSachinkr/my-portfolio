@@ -23,24 +23,7 @@ const LoginForm = () => {
         <div className="w-[80vw] h-full bg-white rounded-full aspect-square absolute -z-10 bg-gradient-to-bl  from-purple-600 via-lime-800 to-blue-600 blur-[100px]" />
         {step === 1 ? (
           <>
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem className="mt-4">
-                  <FormLabel className="text-white/90">Name</FormLabel>
-                  <FormControl>
-                    <Input
-                      className="outline outline-[1px] text-white outline-white"
-                      type="text"
-                      placeholder="Enter Your Name "
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          
             <FormField
               control={form.control}
               name="email"

@@ -15,7 +15,6 @@ import { UseFormReturn } from "react-hook-form";
 type Props = {
   form: UseFormReturn<
     {
-      name: string;
       email: string;
       password: string;
       otp: string;
@@ -27,7 +26,8 @@ type Props = {
 const OTPForm = ({ form }: Props) => {
   return (
     <div className="flex items-center flex-col justify-center w-full gap-5">
-      <p>You will probably get an OTP in your Registered Phone Number</p>
+      <p>You will probably get an OTP in your Registered Email Address. </p>
+      
 
       <FormField
         control={form.control}
@@ -38,7 +38,7 @@ const OTPForm = ({ form }: Props) => {
               <InputOTP
                 maxLength={6}
                 value={field.value}
-                onChange={(val) => form.setValue('otp',val)}
+                onChange={(val) => form.setValue("otp", val)}
               >
                 <InputOTPGroup>
                   {Array(6)
@@ -60,6 +60,11 @@ const OTPForm = ({ form }: Props) => {
           </FormItem>
         )}
       />
+      <br />
+      <span className="text-sm text-white/10 text-center">
+        Make Sure you will get the OTP in your Admins Email Address not in
+        Entered Email Address.
+      </span>
     </div>
   );
 };

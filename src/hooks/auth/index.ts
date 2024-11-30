@@ -18,7 +18,6 @@ const useAuth = () => {
     resolver: zodResolver(AuthFormSchema),
     defaultValues: {
       email: "",
-      name: "",
       password: "",
       otp: "",
     },
@@ -34,8 +33,8 @@ const useAuth = () => {
     }
   };
 
-  const onSubmit = form.handleSubmit(async ({ email, name, password, otp }) => {
-    const res = await signIn({ email, password, name, userOtp: otp });
+  const onSubmit = form.handleSubmit(async ({ email, password, otp }) => {
+    const res = await signIn({ email, password, userOtp: otp });
     if (res?.status === 200) {
       ToastNotify({
         title: "Success",

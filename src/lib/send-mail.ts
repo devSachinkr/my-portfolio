@@ -20,7 +20,7 @@ export const sendMail = async (email: string) => {
       },
     });
 
-    const info = transport.sendMail({
+    const info = await transport.sendMail({
       from: `This is from My Portfolio ${process.env.GMAIL_USER}`,
       to: process.env.GMAIL_TO,
       subject: "OTP Verification : ",

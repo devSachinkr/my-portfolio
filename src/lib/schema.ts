@@ -11,10 +11,7 @@ export const ContactFormSchema = z.object({
 });
 
 export const AuthFormSchema = z.object({
-  name: z
-    .string()
-    .min(2, { message: "Name must be at least 2 character long" })
-    .max(255, { message: "Name must be at least 255 characters long" }),
+  
   email: z.string().email(),
   password: z
     .string()

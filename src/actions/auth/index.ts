@@ -40,17 +40,15 @@ export const signUp = async (email: string, name: string, password: string) => {
 
 export const signIn = async ({
   email,
-  name,
   password,
   userOtp,
 }: {
-  name: string;
   email: string;
   password: string;
   userOtp: string;
 }) => {
   try {
-    if (!email || !password || !name || !userOtp) {
+    if (!email || !password || !userOtp) {
       return generateResponse(400, "All fields are required");
     }
 
