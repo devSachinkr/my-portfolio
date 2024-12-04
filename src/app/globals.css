@@ -126,7 +126,18 @@ body {
 }
     
 
+.your-scrollable-container {
+  overflow-y: scroll; 
+  scrollbar-width: none;
+}
 
+.your-scrollable-container::-webkit-scrollbar {
+  display: none; /* Hides scrollbar */
+}
+
+.your-scrollable-container {
+  overflow-y: overlay;
+}
 
 .custom-loader {
   width: 25px;
@@ -172,3 +183,4 @@ body {
     -webkit-mask-size: 0    18px,0    18px,0    18px,auto
   }
 }
+

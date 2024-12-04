@@ -27,7 +27,6 @@ const OTPForm = ({ form }: Props) => {
   return (
     <div className="flex items-center flex-col justify-center w-full gap-5">
       <p>You will probably get an OTP in your Registered Email Address. </p>
-      
 
       <FormField
         control={form.control}

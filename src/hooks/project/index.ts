@@ -219,7 +219,10 @@ const useProjectForm = ({
   };
 };
 
-const useProject = (projectId?: string) => {
+const useProject = (
+  projectId?: string,
+  data?: PROJECT_WITH_TECH_STACK_AND_TAGS[0] | null
+) => {
   const [allProjectDetails, setAllProjectDetails] =
     useState<PROJECT_WITH_TECH_STACK_AND_TAGS>([]);
   const [projectDetails, setProjectDetails] = useState<
@@ -229,7 +232,11 @@ const useProject = (projectId?: string) => {
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const router = useRouter();
   const [tagColors, setTagColors] = useState<string[]>([]);
-  const {setClose}=useModal();
+  const { setClose } = useModal();
+  const [thumbnail, setThumbnail] = useState<string>(
+    data?.thumbnail?.[0] || ""
+  );
+
   const getAllProjects = async () => {
     setLoading(true);
     const res = await getAllProject();
@@ -278,11 +285,15 @@ const useProject = (projectId?: string) => {
         msg: "Project deleted",
       });
     }
-    setClose()
+    setClose();
     return ToastNotify({
       title: "Oops!",
       msg: "Failed to delete Project ",
     });
+  };
+
+  const nextThumbnail = (Tlink: string) => {
+    setThumbnail(Tlink);
   };
 
   useEffect(() => {
@@ -305,6 +316,8 @@ const useProject = (projectId?: string) => {
   useEffect(() => {
     getAllProjects();
   }, []);
+
+  
   return {
     allProjectDetails,
     loading,
@@ -313,6 +326,8 @@ const useProject = (projectId?: string) => {
     tagColors,
     deleteProject,
     generateRandomColor,
+    thumbnail,
+    nextThumbnail,
   };
 };
 export { useProject, useProjectForm };
