@@ -93,10 +93,10 @@ const ProjectDetails = ({ data, tagColors }: Props) => {
           </div>
 
           <div className="bg-card rounded-xl w-[90vw]">
-            <h1 className="flex items-center justify-center w-full text-6xl font-semibold mt-8 gap-3">
+            <h1 className="flex md:flex-row flex-col items-center justify-center w-full text-6xl font-semibold mt-8 gap-3">
               <GradientText
                 className="from-gray-800 via-gray-300 to-gray-800 "
-                classes="md:text-[4.2rem] text-[3rem]  font-semibold "
+                classes="md:text-[4.2rem] text-[3rem]  font-semibold text-center "
               >
                 Technologies Used
               </GradientText>
