@@ -172,7 +172,7 @@ const ProjectForm = ({ userId, data }: Props) => {
               <FormItem>
                 <FormLabel>Project Duration :- (Optional)</FormLabel>
                 <FormControl>
-                  <Input placeholder="15-AUG-2024  to 16-DEC-2024" {...field} />
+                  <Input placeholder="15-AUG-2025  to 16-DEC-2025" {...field} />
                 </FormControl>
               </FormItem>
               <FormMessage />

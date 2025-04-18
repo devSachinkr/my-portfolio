@@ -40,7 +40,7 @@ const Footer = () => {
           <span className=" font-semibold">sachin67.dev@gmail.com</span>
         </div>
         <p className="text-muted-foreground">
-          �� 2024 My Portfolio. All rights reserved.
+          💖💖 2025 My Portfolio. All rights reserved.
         </p>
       </section>
     </footer>
