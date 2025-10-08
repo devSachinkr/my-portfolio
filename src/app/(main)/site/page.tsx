@@ -12,6 +12,7 @@ import Footer from "@/components/footer";
 const page = () => {
   return (
     <div className="h-screen w-screen">
+      
       <Loader />
       <motion.div
         initial={{ opacity: 0, y: -100 }}

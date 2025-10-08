@@ -74,3 +74,12 @@ model Otp {
   email     String   @unique
   createdAt DateTime @default(now())
 }
+
+model ContactDetails{
+  id        String   @id @default(uuid())
+  name      String   @default("")
+  email     String   @unique
+  phone     String?   @default("")
+  message   String   @default("")
+  createdAt DateTime @default(now())
+}
