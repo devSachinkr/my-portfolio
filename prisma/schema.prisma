@@ -83,3 +83,4 @@ model ContactDetails{
   message   String   @default("")
   createdAt DateTime @default(now())
 }
+

@@ -23,7 +23,7 @@ const useContact = () => {
       email,
       message,
       name,
-      phone: number,
+      phone: number??"",
     });
 
     if (res?.status !== 201) {
