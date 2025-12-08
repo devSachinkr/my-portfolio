@@ -14,9 +14,10 @@ import React from "react";
 import OTPForm from "./otp-form";
 import { sendMail } from "@/lib/send-mail";
 import { cn } from "@/lib/utils";
+import { Eye, EyeOff } from "lucide-react";
 
 const LoginForm = () => {
-  const { form, onSubmit, step, changeStep, email, setEmail } = useAuth();
+  const { form, onSubmit, step, changeStep, email, setEmail,hide,hidePassword } = useAuth();
   return (
     <Form {...form}>
       <form onSubmit={onSubmit} className=" lg:w-[34vw] w-[70vw] relative">
@@ -51,13 +52,23 @@ const LoginForm = () => {
               render={({ field }) => (
                 <FormItem className="mt-4">
                   <FormLabel className="text-white/90">Password</FormLabel>
-                  <FormControl>
+                  <FormControl >
+                    <div className="relative">
+
                     <Input
                       className="outline outline-[1px] text-white outline-white"
-                      type="text"
+                      type={hide?"password":"text"}
                       placeholder="Enter Password "
                       {...field}
-                    />
+                      />
+                    <div className="absolute top-0 right-0  ">
+                      <Button onClick={hidePassword} className="hover:bg-purple-700 w-[20vw] md:w-[10vw]">
+                      {
+                        hide?<Eye/>:<EyeOff/>
+                      }
+                      </Button>
+                      </div>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -73,6 +84,7 @@ const LoginForm = () => {
             step === 1 ? "justify-end" : "justify-between"
           )}
         >
+        
           {step === 2 && (
             <Button
               type="button"

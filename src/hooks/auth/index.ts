@@ -13,6 +13,7 @@ const useAuth = () => {
   const router = useRouter();
   const [step, setStep] = useState<number>(1);
   const [email, setEmail] = useState<string>("");
+  const [hide, setHide] = useState<boolean>(true);
   const form = useForm<z.infer<typeof AuthFormSchema>>({
     mode: "onChange",
     resolver: zodResolver(AuthFormSchema),
@@ -23,6 +24,9 @@ const useAuth = () => {
     },
   });
 
+  const hidePassword = () => {
+    setHide((prev) => !prev);
+  };
   type Props = {
     next?: () => void;
   };
@@ -52,6 +56,6 @@ const useAuth = () => {
     }
   });
 
-  return { form, onSubmit, changeStep, step, email, setEmail };
+  return { form, onSubmit, changeStep, step, email, setEmail ,hidePassword,hide};
 };
 export { useAuth };

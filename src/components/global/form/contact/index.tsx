@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -12,12 +11,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useContact } from "@/hooks/contact";
-import { Instagram, Github } from "lucide-react";
+import { Instagram, Github, Loader2 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
 const ContactForm = () => {
-  const { form, onSubmit } = useContact();
+  const { form, onSubmit, loading } = useContact();
   return (
     <Form {...form}>
       <form onSubmit={onSubmit} className=" lg:w-[34vw] w-[70vw]">
@@ -64,9 +63,7 @@ const ContactForm = () => {
                   {...field}
                 />
               </FormControl>
-              <FormDescription className="text-sm text-red-500/40 font-semibold">
-                Number is optional
-              </FormDescription>
+             
               <FormMessage />
             </FormItem>
           )}
@@ -106,7 +103,9 @@ const ContactForm = () => {
               <Github />
             </Link>
           </div>
-          <Button className="mt-3 flex hover:bg-purple-800 ">Submit</Button>
+          <Button className="mt-3 flex hover:bg-purple-800 " disabled={loading}>
+            {loading ? <Loader2 className="animate-spin"/>: <p>Submit</p>}
+          </Button>
         </div>
       </form>
     </Form>
