@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useContact } from "@/hooks/contact";
-import { Instagram, Github, Loader2 } from "lucide-react";
+import {  Github, Loader2 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -88,13 +88,7 @@ const ContactForm = () => {
         />
         <div className="w-full flex justify-between">
           <div className="flex items-center justify-center gap-4 mt-3">
-            <Link
-              href={"https://www.instagram.com/akatsuki_65400/"}
-              target="_blank"
-              className="flex items-center justify-center w-10 h-10 rounded-full aspect-square bg-gradient-to-l from-purple-600 to-fuchsia-700"
-            >
-              <Instagram />
-            </Link>
+           
             <Link
               href={"https://github.com/devSachinkr"}
               target="_blank"

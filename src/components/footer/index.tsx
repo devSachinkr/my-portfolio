@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
+import {  FaGithub, FaLinkedin } from "react-icons/fa";
 import { BiLogoGmail } from "react-icons/bi";
 const Footer = () => {
   return (
@@ -16,15 +16,7 @@ const Footer = () => {
             <FaGithub />
             Github
           </Link>
-          <Link
-            href="https://www.instagram.com/akatsuki_65400/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 flex items-center justify-center gap-2 hover:text-muted-foreground transition-all duration-300"
-          >
-            <FaInstagram />
-            Instagram
-          </Link>
+         
           <Link
             href="https://www.linkedin.com/in/sachin-kumar67/"
             target="_blank"
@@ -37,7 +29,7 @@ const Footer = () => {
         </div>
         <div className="flex items-center p-2 gap-2">
           <BiLogoGmail />
-          <span className=" font-semibold">sachin67.dev@gmail.com</span>
+          <span className=" font-semibold">krs888904@gmail.com</span>
         </div>
         <p className="text-muted-foreground">
           💖💖 2025 My Portfolio. All rights reserved.
