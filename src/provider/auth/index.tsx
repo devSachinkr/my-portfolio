@@ -23,7 +23,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string>(initialState.token);
   const [user, setUser] = useState<User | null>(initialState.user);
 
-  useEffect(() => {
+  useEffect(() => { 
     try {
       const storedToken = localStorage.getItem("token");
       const storedUser = localStorage.getItem("user");
@@ -42,7 +42,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       localStorage.removeItem("token");
     }
   }, [token]);
-
+     
   useEffect(() => {
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));

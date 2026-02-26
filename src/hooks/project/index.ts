@@ -249,7 +249,7 @@ const useProject = (
   };
 
   const getProjectDetail = async () => {
-    setIsFetching(true);
+    setIsFetching(true); 
     if (!projectId) return;
     const res = await getProjectDetails({ projectId });
     if (res.status !== 200) {
@@ -294,7 +294,7 @@ const useProject = (
 
   const nextThumbnail = (Tlink: string) => {
     setThumbnail(Tlink);
-  };
+  }; 
 
   useEffect(() => {
     if (projectDetails) {

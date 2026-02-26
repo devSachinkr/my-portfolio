@@ -9,7 +9,7 @@ import Projects from "@/components/projects";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
 
-const page = () => {
+const Page = () => {
   return (
     <div className="h-screen w-screen">
       
@@ -32,4 +32,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

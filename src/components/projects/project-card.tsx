@@ -57,11 +57,11 @@ const ProjectCard = ({
                                 className="hover:bg-purple-600 bg-transparent border-purple-600 border-[1px]"
                                 onClick={() => deleteProject(id)}
                               >
-                                Delete
+                                Delete 
                               </Button>
                             </div>
                           }
-                        />
+                        />,
                       )
                     }
                   >
@@ -71,7 +71,10 @@ const ProjectCard = ({
               </Popover>
             </div>
           )}
-          <div className="w-6 h-6 rounded-full aspect-square bg-gradient-to-l from-purple-600 to-fuchsia-600 absolute top-2 left-[10px] text-sm font-semibold flex items-center justify-center text-washed-blue-50">
+          <div
+            className="w-6 h-6 rounded-full aspect-square bg-gradient-to-l from-purple-600
+           to-fuchsia-600 absolute top-2 left-[10px] text-sm font-semibold flex items-center justify-center text-washed-blue-50"
+          >
             {currentIdx + 1}/{totalLength}
           </div>
           <Link href={`/site/project/${id}`}>
